@@ -80,7 +80,7 @@ void CoupledMoveLeg(float t, struct GaitParams params,
     float y;
     SinTrajectory(t, params, gait_offset, x, y);
     CartesianToThetaGamma(x, y, leg_direction, theta, gamma);
-    printf("X: %f  Y: %f\n",x,y);
+    // printf("X: %f  Y: %f\n",x,y);
     // SetCoupledPosition(theta, gamma, gains);
 }
 
@@ -137,14 +137,10 @@ void GetGamma(float L, float theta, float& gamma) {
     float cos_param = (pow(L1,2.0) + pow(L,2.0) - pow(L2,2.0)) / (2.0*L1*L);
     if (cos_param < -1.0) {
         gamma = PI;
-        #ifdef DEBUG_HIGH
         printf("ERROR: L is too small to find valid alpha and beta!\n");
-        #endif
       } else if (cos_param > 1.0) {
         gamma = 0;
-        #ifdef DEBUG_HIGH
         printf("ERROR: L is too large to find valid alpha and beta!\n");
-        #endif
       } else {
         gamma = acos(cos_param);
       }
